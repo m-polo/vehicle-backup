@@ -4,7 +4,7 @@ Vehicle Backup recovers data from database and stores it CSV files. It starts a 
 
 It includes everything you need, including:
 
-- [.Net 8](https://learn.microsoft.com/es-es/dotnet/core/whats-new/dotnet-8/overview) for the frontend
+- [.Net 8](https://learn.microsoft.com/es-es/dotnet/core/whats-new/dotnet-8/overview) as runtime
 - [Geotab SDK](https://developers.geotab.com/myGeotab/introduction) to access database
 
 It is written 100% in [C#](https://learn.microsoft.com/es-es/dotnet/csharp/whats-new/csharp-12).
@@ -23,10 +23,10 @@ It has the following structure:
 
 ### Folder structure
 
-- Entities
-- Interfaces
-- Processes
-- Services
+- Entities: Main app objects.
+- Interfaces: Contract definitions for Entities and Services.
+- Processes: Application functionality runners.
+- Services: Main app functionalities.
 
 ### Build
 
