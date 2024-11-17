@@ -18,10 +18,10 @@ namespace vehicle_backup.Services
 
             foreach (var device in apiResultData.Devices)
             {
-                var deviceId = device.Id!.ToString()!;
-                var deviceStatusInfo = apiResultData.DeviceStatusInfos.FirstOrDefault(dsi => dsi.Device!.Id!.ToString() == deviceId)
-                        ?? cacheData.DeviceStatusInfos.First(dsi => dsi.Device!.Id!.ToString() == deviceId);
-                var odometer = cacheData.Trips.Where(t => t.Device!.Id!.ToString() == deviceId).Sum(t => t.Distance);
+                var deviceId = device.Id?.ToString();
+                var deviceStatusInfo = apiResultData.DeviceStatusInfos.FirstOrDefault(dsi => dsi.Device?.Id?.ToString() == deviceId)
+                        ?? cacheData.DeviceStatusInfos.First(dsi => dsi.Device?.Id?.ToString() == deviceId);
+                var odometer = cacheData.Trips.Where(t => t.Device?.Id?.ToString() == deviceId).Sum(t => t.Distance);
 
                 var vehicle = CreateObject(device, deviceStatusInfo, odometer);
 
@@ -32,13 +32,13 @@ namespace vehicle_backup.Services
 
             foreach (var deviceStatusInfo in apiResultData.DeviceStatusInfos)
             {
-                var deviceId = deviceStatusInfo.Device?.Id!.ToString()!;
+                var deviceId = deviceStatusInfo.Device?.Id?.ToString();
 
                 var deviceAlreadyAdded = vehicles.Any(v => v.Id == deviceId);
                 if (!deviceAlreadyAdded)
                 {
-                    var device = cacheData.Devices.First(d => d.Id!.ToString() == deviceId);
-                    var odometer = cacheData.Trips.Where(t => t.Device!.Id!.ToString() == deviceId).Sum(t => t.Distance);
+                    var device = cacheData.Devices.First(d => d.Id?.ToString() == deviceId);
+                    var odometer = cacheData.Trips.Where(t => t.Device?.Id?.ToString() == deviceId).Sum(t => t.Distance);
 
                     var vehicle = CreateObject(device, deviceStatusInfo, odometer);
 
@@ -50,14 +50,14 @@ namespace vehicle_backup.Services
 
             foreach (var trip in apiResultData.Trips)
             {
-                var deviceId = trip.Device?.Id!.ToString()!;
+                var deviceId = trip.Device?.Id?.ToString();
 
                 var deviceAlreadyAdded = vehicles.Any(v => v.Id == deviceId);
                 if (!deviceAlreadyAdded)
                 {
-                    var device = cacheData.Devices.First(d => d.Id!.ToString() == deviceId);
-                    var deviceStatusInfo = cacheData.DeviceStatusInfos.First(dsi => dsi.Device!.Id!.ToString() == deviceId);
-                    var odometer = apiResultData.Trips.Where(t => t.Device!.Id!.ToString() == deviceId).Sum(t => t.Distance);
+                    var device = cacheData.Devices.First(d => d.Id?.ToString() == deviceId);
+                    var deviceStatusInfo = cacheData.DeviceStatusInfos.First(dsi => dsi.Device?.Id?.ToString() == deviceId);
+                    var odometer = apiResultData.Trips.Where(t => t.Device?.Id?.ToString() == deviceId).Sum(t => t.Distance);
 
                     var vehicle = CreateObject(device, deviceStatusInfo, odometer);
 

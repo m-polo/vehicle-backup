@@ -19,7 +19,7 @@ namespace vehicle_backup.Services
             {
                 foreach (var device in devicesData)
                 {
-                    var deviceCache = _devicesCache.Where(d => d.Id!.ToString() == device.Id!.ToString()).FirstOrDefault();
+                    var deviceCache = _devicesCache.Where(d => d.Id?.ToString() == device.Id?.ToString()).FirstOrDefault();
                     if (deviceCache is not null)
                     {
                         deviceCache = device;
@@ -39,7 +39,7 @@ namespace vehicle_backup.Services
             {
                 foreach (var deviceStatusInfo in deviceStatusInfosData)
                 {
-                    var deviceStatusInfoCache = _devicesStatusInfosCache.Where(d => d.Device?.Id!.ToString() == deviceStatusInfo.Id?.ToString()).FirstOrDefault();
+                    var deviceStatusInfoCache = _devicesStatusInfosCache.Where(d => d.Device?.Id?.ToString() == deviceStatusInfo.Id?.ToString()).FirstOrDefault();
                     if (deviceStatusInfoCache is not null)
                     {
                         deviceStatusInfoCache = deviceStatusInfo;
@@ -59,7 +59,7 @@ namespace vehicle_backup.Services
             {
                 foreach (var trip in tripsData)
                 {
-                    var tripCache = _tripsCache.Where(d => d.Id!.ToString() == trip.Id!.ToString()).FirstOrDefault();
+                    var tripCache = _tripsCache.Where(d => d.Id?.ToString() == trip.Id?.ToString()).FirstOrDefault();
                     if (tripCache is not null)
                     {
                         tripCache = trip;
