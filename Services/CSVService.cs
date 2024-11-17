@@ -8,7 +8,7 @@ namespace vehicle_backup.Services
         private readonly string _directory = directory ?? "csv";
         private readonly ILoggingService _logger = logger;
 
-        public void WriteItemsInfo<T>(IList<T> items)  where T : IEntity
+        public void WriteItemsInfo<T>(IList<T> items) where T : IEntity
         {
             _logger.LogText("Writing items info to CSV");
 

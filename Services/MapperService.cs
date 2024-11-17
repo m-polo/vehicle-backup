@@ -75,7 +75,7 @@ namespace vehicle_backup.Services
         private Vehicle CreateObject(Device device, DeviceStatusInfo deviceStatusInfo, double? odometer)
         {
             return new Vehicle(device.Id!.ToString()!, device.Name, deviceStatusInfo.DateTime,
-                     (device as GoDevice)?.VehicleIdentificationNumber, deviceStatusInfo.Longitude, deviceStatusInfo.Latitude, odometer);
+                     (device as GoDevice)?.VehicleIdentificationNumber, deviceStatusInfo.Latitude, deviceStatusInfo.Longitude, odometer);
         }
     }
 }

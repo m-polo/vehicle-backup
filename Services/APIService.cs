@@ -59,7 +59,7 @@ namespace vehicle_backup.Services
                 try
                 {
                     _logger.LogText($"Calling GetFeed method for {typeof(T)} with fromVersion {fromVersion}");
-                    return await _api.CallAsync<FeedResult<T>>("GetFeed", typeof(T), new { fromVersion, rateLimit });
+                    return await _api.CallAsync<FeedResult<T>>("GetFeed", typeof(T), new { fromVersion, rateLimit, sort = new SortByDate(SortDirection.Desc, null, null) });
 
                 }
                 catch (Exception ex)

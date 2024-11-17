@@ -6,7 +6,7 @@ namespace vehicle_backup.Processes
 {
     public class MainProcess(string? directory, ILoggingService logger)
     {
-        const string FILE_HEADERS = "Id,Name,VIN,Date,Longitude,Latitude,Odometer\r\n";
+        const string FILE_HEADERS = "Id,Name,VIN,Date,Latitude,Longitude,Odometer\r\n";
         private readonly ILoggingService _logger = logger;
 
         public async Task RunAsync(IAPIConfiguration configuration, CancellationTokenSource cancellationToken)
