@@ -4,7 +4,7 @@ using vehicle_backup.Services;
 
 namespace vehicle_backup.Processes
 {
-    public class MainProcess(ILoggingService logger)
+    public class MainProcess(string? directory, ILoggingService logger)
     {
         const string FILE_HEADERS = "Id,Name,VIN,Date,Longitude,Latitude,Odometer\r\n";
         private readonly ILoggingService _logger = logger;
@@ -13,7 +13,7 @@ namespace vehicle_backup.Processes
         {
             try
             {
-                var exportService = new CSVService(FILE_HEADERS, _logger);
+                var exportService = new CSVService(FILE_HEADERS, directory, _logger);
                 var cacheService = new CacheService(_logger);
                 var mapperService = new MapperService(cacheService, _logger);
                 var apiService = new APIService(apiParameters, cacheService, _logger);

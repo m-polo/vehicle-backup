@@ -2,8 +2,8 @@ using vehicle_backup.Interfaces;
 
 namespace vehicle_backup.Entities
 {
-    public class APIResult : IResult
+    public class APIResult<T> : IResult<T>
     {
-        public object Data { get; set; }
+        public T Data { get; set; }
     }
 }

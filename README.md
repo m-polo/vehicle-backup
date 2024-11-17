@@ -51,7 +51,6 @@ dotnet run <user> <password> <server> <database> [filepath]
 - `filepath`: Output directory. Optional.
 
 ## Future improvements
-- Add request limit
 - Request required fields only
 - Improve caching
 - Fix odometer calculation

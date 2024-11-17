@@ -4,9 +4,9 @@ using vehicle_backup.Services;
 
 namespace vehicle_backup.Processes
 {
-    public class FeedProcess(IAPIService apiService, IMapperService mapperService, IExportService exportService, ILoggingService logger)
+    public class FeedProcess(IAPIService<APIResultData> apiService, IMapperService mapperService, IExportService exportService, ILoggingService logger)
     {
-        private readonly IAPIService _apiService = apiService;
+        private readonly IAPIService<APIResultData> _apiService = apiService;
         private readonly IExportService _exportService = exportService;
         private readonly IMapperService _mapperService = mapperService;
         private readonly ILoggingService _logger = logger;
@@ -21,7 +21,7 @@ namespace vehicle_backup.Processes
 
             _logger.LogText($"Vehicles count: {vehicles.Count}");
 
-            _exportService.WriteItemsInfo(vehicles, "csv");
+            _exportService.WriteItemsInfo(vehicles);
 
             _logger.LogText("Feed process finished");
         }

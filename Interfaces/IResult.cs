@@ -1,7 +1,7 @@
 namespace vehicle_backup.Interfaces
 {
-    public interface IResult
+    public interface IResult<T>
     {
-        public object Data { get; set; }
+        public T Data { get; set; }
     }
 }

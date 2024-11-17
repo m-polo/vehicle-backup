@@ -1,8 +1,8 @@
 namespace vehicle_backup.Interfaces
 {
-    public interface IAPIService
+    public interface IAPIService<T>
     {
         Task AuthenticateAsync();
-        Task<IResult> CallAPIAsync();
+        Task<IResult<T>> CallAPIAsync();
     }
 }

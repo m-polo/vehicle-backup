@@ -5,7 +5,7 @@ using vehicle_backup.Interfaces;
 
 namespace vehicle_backup.Services
 {
-    public class APIService(APIConfiguration parameters, ICacheService cache, ILoggingService logger) : IAPIService
+    public class APIService(APIConfiguration parameters, ICacheService cache, ILoggingService logger) : IAPIService<APIResultData>
     {
         private readonly ILoggingService _logger = logger;
         private readonly ICacheService _cache = cache;
@@ -24,7 +24,7 @@ namespace vehicle_backup.Services
             _logger.LogText("Authenticated");
         }
 
-        public async Task<IResult> CallAPIAsync()
+        public async Task<IResult<APIResultData>> CallAPIAsync()
         {
             _logger.LogText("Retrieving data");
 
@@ -44,14 +44,14 @@ namespace vehicle_backup.Services
                 _logger.LogText("No data retrieved");
             }
 
-            return new APIResult
+            return new APIResult<APIResultData>
             {
                 Data = new APIResultData(devices?.Data ?? [], deviceStatusInfos?.Data ?? [], trips?.Data ?? [])
             };
         }
 
        
-        private async Task<FeedResult<T>> GetFeedRequestAsync<T>(long fromVersion) where T : Entity
+        private async Task<FeedResult<T>> GetFeedRequestAsync<T>(long fromVersion = 0, int? rateLimit = null) where T : Entity
         {
             var retries = 0;
             while (retries < _maxRetries)
@@ -59,7 +59,7 @@ namespace vehicle_backup.Services
                 try
                 {
                     _logger.LogText($"Calling GetFeed method for {typeof(T)} with fromVersion {fromVersion}");
-                    return await _api.CallAsync<FeedResult<T>>("GetFeed", typeof(T), new { fromVersion });
+                    return await _api.CallAsync<FeedResult<T>>("GetFeed", typeof(T), new { fromVersion, rateLimit });
 
                 }
                 catch (Exception ex)

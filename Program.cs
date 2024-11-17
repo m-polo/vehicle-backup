@@ -30,7 +30,7 @@ logger.LogText("******************************************************");
 logger.LogText("Press any key to quit.\n");
 
 var cancellationToken = new CancellationTokenSource();
-var mainProcess = new MainProcess(logger);
+var mainProcess = new MainProcess(filesDirectory, logger);
 
 #pragma warning disable CS4014
 mainProcess.RunAsync(apiParameters, cancellationToken);
