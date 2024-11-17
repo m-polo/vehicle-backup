@@ -5,12 +5,12 @@ using vehicle_backup.Interfaces;
 
 namespace vehicle_backup.Services
 {
-    public class APIService(APIConfiguration parameters, ICacheService cache, ILoggingService logger) : IAPIService<APIResultData>
+    public class APIService(IAPIConfiguration configuration, ICacheService cache, ILoggingService logger) : IAPIService<APIResultData>
     {
         private readonly ILoggingService _logger = logger;
         private readonly ICacheService _cache = cache;
-        private readonly int _maxRetries = parameters.MaxRetries;
-        private readonly API _api = new(parameters.User, parameters.Password, parameters.Session, parameters.Database, parameters.Server);
+        private readonly int _maxRetries = configuration.MaxRetries;
+        private readonly API _api = new(configuration.User, configuration.Password, configuration.Session, configuration.Database, configuration.Server);
         private long _deviceLastVersion = 0;
         private long _deviceStatusInfoLastVersion = 0;
         private long _tripsLastVersion = 0;

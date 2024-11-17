@@ -21,7 +21,7 @@ var server = args[2];
 var database = args[3];
 var filesDirectory = args.Length == 5 ? args[4] : FILES_DIRECTORY;
 
-var apiParameters = new APIConfiguration(user, password, null, database, server, API_MAX_RETRIES);
+var configuration = new APIConfiguration(user, password, null, database, server, API_MAX_RETRIES);
 
 logger.LogText("\n******************************************************");
 logger.LogText($"Receiving data from server {server} and database {database}.");
@@ -33,7 +33,7 @@ var cancellationToken = new CancellationTokenSource();
 var mainProcess = new MainProcess(filesDirectory, logger);
 
 #pragma warning disable CS4014
-mainProcess.RunAsync(apiParameters, cancellationToken);
+mainProcess.RunAsync(configuration, cancellationToken);
 #pragma warning restore CS4014
 
 if (Console.ReadLine() != null)

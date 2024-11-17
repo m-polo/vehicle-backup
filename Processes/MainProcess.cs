@@ -9,14 +9,14 @@ namespace vehicle_backup.Processes
         const string FILE_HEADERS = "Id,Name,VIN,Date,Longitude,Latitude,Odometer\r\n";
         private readonly ILoggingService _logger = logger;
 
-        public async Task RunAsync(APIConfiguration apiParameters, CancellationTokenSource cancellationToken)
+        public async Task RunAsync(IAPIConfiguration configuration, CancellationTokenSource cancellationToken)
         {
             try
             {
                 var exportService = new CSVService(FILE_HEADERS, directory, _logger);
                 var cacheService = new CacheService(_logger);
                 var mapperService = new MapperService(cacheService, _logger);
-                var apiService = new APIService(apiParameters, cacheService, _logger);
+                var apiService = new APIService(configuration, cacheService, _logger);
 
                 await apiService.AuthenticateAsync();
 
