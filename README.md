@@ -50,9 +50,17 @@ dotnet run <user> <password> <server> <database> [filepath]
 - `database`: Database name.
 - `filepath`: Output directory. Optional.
 
+### Build and run docker image
+
+To containerize the app, run the following commands:
+
+```sh
+docker build -t vehicle-backup .
+docker run -i --name vehicle-backup vehicle-backup <user> <password> <server> <database> [filepath]
+ ```
+
 ## Future improvements
 - Request required fields only
 - Improve caching
 - Fix odometer calculation
 - Create tests
-- Dockerize application

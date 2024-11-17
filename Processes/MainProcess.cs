@@ -27,7 +27,7 @@ namespace vehicle_backup.Processes
                         var feedProcess = new FeedProcess(apiService, mapperService, exportService, _logger);
                         await feedProcess.RunAsync();
 
-                        Console.WriteLine("Waiting one minute for next execution");
+                        _logger.LogText("Waiting one minute for next execution");
                         await Task.Delay(60000);
                     }
                     while (true && !cancellationToken.IsCancellationRequested);
